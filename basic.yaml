@@ -1,8 +1,23 @@
 version: '3.8'
 services:
-  nginx:
+  web:
     image: nginx:1-alpine
-    ports:
-      - 8089:80
+    expose:
+      - 80
     volumes:
       - ./html5up-stellar/:/usr/share/nginx/html
+    networks:
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.web-app.rule=Host('web-dev.xyretail.site')
+      - traefik.http.routers.web-app.entrypoints=web
+      - traefik.http.services.web-app.loadbalancer.server.port=80
+    deploy:
+      placement:
+        constraints:
+          - node.labels.type == dev
+
+networks:
+  dokploy-network:
+    external: true
