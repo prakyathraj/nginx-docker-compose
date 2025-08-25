@@ -16,7 +16,7 @@ services:
     deploy:
       placement:
         constraints:
-          - node.labels.type==dev
+          - node.labels.env==dev
 
 networks:
   dokploy-network:
