@@ -4,8 +4,8 @@ services:
     image: nginx:1-alpine
     expose:
       - 80
-    volumes:
-      - ./html5up-stellar/:/usr/share/nginx/html
+    # volumes:
+    #   - ./html5up-stellar/:/usr/share/nginx/html
     networks:
       - dokploy-network
     labels:
